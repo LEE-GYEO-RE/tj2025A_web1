@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AppStart {
+public class AppStart1 {
     public static void main(String[] args) {
-        SpringApplication.run( AppStart.class );
+        SpringApplication.run( AppStart1.class );
         // 1. SpringApplication 클래스
         // 2. .run( ) : static 선언된 스프링 실행 함수
         // 3. ( 현재클래스.class ) :
