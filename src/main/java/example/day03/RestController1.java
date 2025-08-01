@@ -4,6 +4,7 @@ package example.day03;
 
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.TabStop;
 import java.util.Map;
 
 // @Controller // 스프링에게 해당 클래스는 Controller 라는 걸 알리는 것.
@@ -78,6 +79,44 @@ public class RestController1 {
         System.out.println("RestController1.method5");
         System.out.println("taskDto = " + taskDto);
         // taskDto = TaskDto{name='유재석', age=40}
+        return 3;
+    }
+
+    /*
+    * 1) 쿼리스트링이란 ?  :  URL 경로상의 매개변수 표현 , 매개변수 노출o , 보안 위험 , URL?매개변수=값&매개변수=값
+    * 2) body(본문)이란?  :  HTTP 본문에 매개변수 표현 , 매개변수 노출x ,  보안 안전 , POST/PUT 에서 JSON타입으로 객체 지원
+    * +++ HTTPS          : 암호화되어 , 안전하게 데이터 주고받기
+
+                      @RequestParam                          vs          @ModelAttribute                                        VS   @RequestBody
+     역할              단일 파라미터에 변수 바인딩                           복수 파라미터에 객체 바인딩                                     본문(body) 객체 바인딩
+     생략기준           변수명이 일치할 경우(쿼리스트링의 매개변수)             DTO 타입일때 기본적용(+생성자 , +Setter )                      DTO
+     주요타입           기본형: int/String/List/Map                        DTO/VO(개발자가만든객체) *VO(읽기모드 = setter 없음)             DTO
+     처리가능요청       쿼리스트링,<form:첨부파일x>                          쿼리스트링,<form:첨부파일o>                                    본문(body)
+     HTTP메소드        GET/POST/PUT/DELET                                 GET/POST/PUT/DELET                                          POST/PUT
+
+     -----------> 개인정보는 @RequestBody , url 들어가면 안됨.
+     -----------> 일반정보 조회는 @RequestParam 나 @ModelAttribute 씀.
+
+
+    */
+
+    @PostMapping("/day03/param5")
+    // Talend API : [Method] Post , [Scheme] baseURL/day03/param5
+    // [HEADERS] JSON [BODY] { "name" : "유재석" , "age" : "40" }
+    // --------> Post 방식으로 URL 주소로 부가정보에 JSON 보내는 것 BODY 객체를
+    public boolean method6( @RequestBody TaskDto taskDto){
+        System.out.println("RestController1.method6");
+        System.out.println("taskDto = " + taskDto);
+        // taskDto = TaskDto{name='유재석', age=40}
+        return true;
+    }
+
+    @PutMapping("/day03/param6")
+    public int method7( @RequestBody Map< String , String > map){
+        System.out.println("RestController1.method7");
+        System.out.println("map = " + map);
+        // @RequestBody 쓰면 : map = {name=유재석, age=40}
+        // @RequestBody 안쓰면 : map = {}
         return 3;
     }
 
