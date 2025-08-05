@@ -8,7 +8,7 @@ import java.util.Map;
 
 @RestController // @Controller(+Component) + @ResponseBody
 // HTTP(클라이언트)의 요청 과 응답 처리 담당
-public class FetchController {
+public class  FetchController {
     // ========================== 1~4 : 요청에 따른 매개변수 [ ()안에 ] 없고 , 반환값 [ VOID ] 도 없다 ========================== //
     // 1. HTTP 정의 , METHOD : GET , URL : /day04/exam1
     @GetMapping("/day04/exam1") // TalendAPI : GET , http://localhost:8080/day04/exam1      // Response : 200(성공)
