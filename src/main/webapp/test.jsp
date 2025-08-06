@@ -11,6 +11,7 @@
     <script src='main.js'></script>
 </head>
 <body>
-    
+    <h3> http://localhost:8080/test.jsp , *webapp 폴더 이하 경로 </h3>
+    <h3> JSP 파일 입니다.</h3>
 </body>
 </html>
