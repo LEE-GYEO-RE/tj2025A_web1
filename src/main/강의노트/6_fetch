@@ -1,0 +1,46 @@
+    [ 동기 vs 비동기 ] : 프로그램에서 작업을 처리하는 방식
+
+        동기 : 여러 작업이 실행 될때 작업 간의 실행 순서를 제어 , 하나의 스레드가 동시에 접근 차단
+            순차처리 , 속도 상대적 느림 , 데이터 무결성 중시
+        비동기 : 여러 작업이 실행 될때 독립적으로 실행 , 하나의 스레드가 동시에 접근 허용
+            동시처리 , 속도 상대적 빠름 , 데이터 무결성 보장안됨.
+
+            동기의 무결성 ? : 계좌이체 (입금하는 동시 출금이 되어야함. 돈의 인출 순서)
+            비동기의 무결성 : 채팅(동시에 채팅쳤을 때 먼저 전송된 채팅을 먼저 읽음)
+
+    [ fetch ]
+        1. 정의 : JS 에서 제공하는 내장 (통신) 함수
+        2. 역할 : HTTP 요청을 보내고 응답을 비동기적으로 처리 함수
+        3. 사용법
+            [ 비동기 방법 ] : then 이용한 체인 형식 , 실행순서 보장안됨.
+            fetch( url , option )
+                .then( response => response.json() )
+                .then( data => { } )
+                .catch( error => { } )
+
+            [ 동기 방법 ] : async/await 이용한 동기 형식 , *권장* 방법 , 실행순서 보장됨.
+            async () => {
+                try{
+                    const response = await fetch( url , option )
+                    const data = await response.json();
+                }catch( error){
+                    console.log( error );
+                }
+            }
+
+        4.
+            1) url : 스프링 기준에서는 Spring프로젝트 내 통신할 controller 의 @XXXmapping 에서 정의된 url
+                주로 get/delete queryString : `url?param1=${value1}&param2=${value2}`
+                주로 *식별자*
+            2) option :
+                주로 get/delete : { method : "GET" } ,
+                주로 post/put : { method : "POST" ,
+                                 headers : { "Content-Type" : "application/json"} ,
+                                 body : JSON.stringify( data ) }
+
+            3) then( 응답객체 => 응답객체.json() ) : 응답객체를 JSON 타입으로 변환
+                -> rest api 위주라 json 객체 주고 받기 때문에 보통 이것만 씀
+                -> 응답객체 : response 명은 아무거나 써도되긴 함 뒤에 맞추기만 하면됨
+                가끔쓰는 거 :then( 응답객체 => 응답객체.text() ) : 응답객체를 문자 타입으로 변환
+            4) then( 변환된객체 => { 실행문 } ); : 통신 응답 결과
+            5) catch( 에러객체 => { 실행문 };     : 통신 에러 발생
