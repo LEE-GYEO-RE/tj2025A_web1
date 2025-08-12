@@ -20,6 +20,11 @@ public class AssessmentService {
         return result;
     } // func e
 
+    // 회원번호
+    public int getNextCustno() {
+        return assessmentDao.getNextCustno();
+    } // func e
+
     // 회원 전체 조회
     public List<MemberDto> memberPrint(){
         System.out.println("AssessmentService.memberPrint");

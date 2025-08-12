@@ -7,6 +7,7 @@ import 성취도평가.model.dto.MemberDto;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +33,22 @@ public class AssessmentDao extends Dao {
         }
         return false;
     } // func e
+
+    // 회원 번호 자동증가 후 반환
+    public int getNextCustno() {
+        int nextCustno = 0;
+        try {
+            String sql = "SELECT IFNULL(MAX(custno), 0) + 1 AS nextCustno FROM member";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                nextCustno = rs.getInt("nextCustno");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return nextCustno;
+    }
 
     // 회원 정보 조회
     public List<MemberDto> memberPrint(){

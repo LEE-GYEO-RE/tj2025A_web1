@@ -22,6 +22,12 @@ public class AssessmentController {
         return result;
     } // func e
 
+    // 회원번호
+    @GetMapping("/next-custno")
+    public int getNextCustno() {
+        return assessmentService.getNextCustno();
+    } // func e
+
     // 회원 전체 조회
     @GetMapping("")
     public List<MemberDto> memberPrint(){
