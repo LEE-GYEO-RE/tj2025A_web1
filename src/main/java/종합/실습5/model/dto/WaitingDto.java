@@ -4,7 +4,9 @@ import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter@Setter@ToString
+@Getter
+@Setter
+@ToString
 public class WaitingDto {
     private int wno;
     private String phone;

@@ -14,7 +14,7 @@ public class BoardController {
     // 1. 글쓰기
     @PostMapping("/실습1/board")
     @ResponseBody
-    public boolean create(){
+    public boolean create() {
         System.out.println("BoardController.create");
         return true;
     }
@@ -22,7 +22,7 @@ public class BoardController {
     // 2. 전체 글 조회
     @GetMapping("/실습1/board")
     @ResponseBody
-    public List<boardDto> read(){
+    public List<boardDto> read() {
         System.out.println("BoardController.read");
         ArrayList<boardDto> list = new ArrayList<>();
         list.add(new boardDto());
@@ -33,18 +33,18 @@ public class BoardController {
     // 3. 개별 글 조회
     @GetMapping("/실습1/board/view")
     @ResponseBody
-    public Map<Integer , String> dread(){
+    public Map<Integer, String> dread() {
         System.out.println("BoardController.dread");
-        Map<Integer , String > map = new HashMap<>();
-        map.put(1 , "어린왕자");
-        map.put(2 , "누가 내머리에 똥쌌어");
+        Map<Integer, String> map = new HashMap<>();
+        map.put(1, "어린왕자");
+        map.put(2, "누가 내머리에 똥쌌어");
         return map;
     }
 
     // 4. 개별 글 수정
     @PutMapping("/실습1/board")
     @ResponseBody
-    public boolean update(){
+    public boolean update() {
         System.out.println("BoardController.update");
         return false;
     }
@@ -52,7 +52,7 @@ public class BoardController {
     // 5. 개별 글 삭제
     @DeleteMapping("/실습1/board")
     @ResponseBody
-    public int delete(){
+    public int delete() {
         System.out.println("BoardController.delete");
         return 3;
     }

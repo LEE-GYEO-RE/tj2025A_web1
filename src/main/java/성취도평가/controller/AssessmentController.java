@@ -11,11 +11,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/member")
 public class AssessmentController {
-    @Autowired private AssessmentService assessmentService;
+    @Autowired
+    private AssessmentService assessmentService;
 
     // 등록
     @PostMapping("/add")
-    public boolean memberAdd(@RequestBody MemberDto memberDto ){
+    public boolean memberAdd(@RequestBody MemberDto memberDto) {
         System.out.println("AssessmentController.memberAdd");
         System.out.println("memberDto = " + memberDto);
         boolean result = assessmentService.memberAdd(memberDto);
@@ -30,7 +31,7 @@ public class AssessmentController {
 
     // 회원 전체 조회
     @GetMapping("")
-    public List<MemberDto> memberPrint(){
+    public List<MemberDto> memberPrint() {
         System.out.println("AssessmentController.memberPrint");
         List<MemberDto> result = assessmentService.memberPrint();
         return result;
@@ -38,7 +39,7 @@ public class AssessmentController {
 
     // 회원 정보 수정
     @PutMapping("/update")
-    public boolean memberUpdate(@RequestBody MemberDto memberDto){
+    public boolean memberUpdate(@RequestBody MemberDto memberDto) {
         System.out.println("AssessmentController.memberUpdate");
         boolean result = assessmentService.memberUpdate(memberDto);
         return result;
@@ -46,7 +47,7 @@ public class AssessmentController {
 
     // 회원 매출 조회
     @GetMapping("/money")
-    public List<AssessmentDto> moneyPrint(){
+    public List<AssessmentDto> moneyPrint() {
         System.out.println("AssessmentController.moneyPrint");
         List<AssessmentDto> result = assessmentService.moneyPrint();
         return result;

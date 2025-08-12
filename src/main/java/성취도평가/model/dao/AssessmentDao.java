@@ -4,10 +4,8 @@ import org.springframework.stereotype.Repository;
 import 성취도평가.model.dto.AssessmentDto;
 import 성취도평가.model.dto.MemberDto;
 
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,21 +13,22 @@ import java.util.List;
 public class AssessmentDao extends Dao {
 
     // 회원 등록
-    public boolean memberAdd(MemberDto memberDto){
+    public boolean memberAdd(MemberDto memberDto) {
         System.out.println("AssessmentDao.memberAdd");
         System.out.println("memberDto = " + memberDto);
         try {
-            String sql = "insert into member( custname , phone , address, grade , city ) values ( ? , ? , ? , ? , ?)";
+            String sql = "insert into member( custname , phone , address, grade , city , joindate ) values ( ? , ? , ? , ? , ? , ?)";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1,memberDto.getCustname());
-            ps.setString(2,memberDto.getPhone());
-            ps.setString(3,memberDto.getAddress());
-            ps.setString(4,memberDto.getGrade());
-            ps.setString(5,memberDto.getCity());
+            ps.setString(1, memberDto.getCustname());
+            ps.setString(2, memberDto.getPhone());
+            ps.setString(3, memberDto.getAddress());
+            ps.setString(4, memberDto.getGrade());
+            ps.setString(5, memberDto.getCity());
+            ps.setString(6,memberDto.getJoindate());
             int count = ps.executeUpdate();
-            if(count == 1 )return true;
-        }catch (Exception e ){
-            System.out.println(e );
+            if (count == 1) return true;
+        } catch (Exception e) {
+            System.out.println(e);
         }
         return false;
     } // func e
@@ -48,17 +47,17 @@ public class AssessmentDao extends Dao {
             System.out.println(e);
         }
         return nextCustno;
-    }
+    } // func e
 
     // 회원 정보 조회
-    public List<MemberDto> memberPrint(){
+    public List<MemberDto> memberPrint() {
         System.out.println("AssessmentDao.memberPrint");
         List<MemberDto> list = new ArrayList<>();
         try {
             String sql = "select * from member";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 MemberDto memberDto = new MemberDto();
                 memberDto.setCustno(rs.getInt("custno"));
                 memberDto.setCustname(rs.getString("custname"));
@@ -66,16 +65,17 @@ public class AssessmentDao extends Dao {
                 memberDto.setAddress(rs.getString("address"));
                 memberDto.setGrade(rs.getString("grade"));
                 memberDto.setCity(rs.getString("city"));
+                memberDto.setJoindate(rs.getString("joindate"));
                 list.add(memberDto);
             }
-        }catch (Exception e ){
+        } catch (Exception e) {
             System.out.println(e);
         }
         return list;
     } // func e
 
     // 회원 정보 수정
-    public boolean memberUpdate(MemberDto memberDto){
+    public boolean memberUpdate(MemberDto memberDto) {
         System.out.println("AssessmentDao.memberUpdate");
         System.out.println("memberDto = " + memberDto);
         try {
@@ -83,21 +83,21 @@ public class AssessmentDao extends Dao {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, memberDto.getCustname());
             ps.setString(2, memberDto.getPhone());
-            ps.setString(3,memberDto.getAddress());
-            ps.setString(4,memberDto.getGrade());
+            ps.setString(3, memberDto.getAddress());
+            ps.setString(4, memberDto.getGrade());
             ps.setString(5, memberDto.getCity());
             ps.setInt(6, memberDto.getCustno());
             int count = ps.executeUpdate();
-            if(count == 1 ) return true;
+            if (count == 1) return true;
 
-        }catch (Exception e ){
+        } catch (Exception e) {
             System.out.println(e);
         }
         return false;
     } // func e
 
     // 회원 매출 조회
-    public List<AssessmentDto> moneyPrint(){
+    public List<AssessmentDto> moneyPrint() {
         System.out.println("AssessmentDao.moneyPrint");
         List<AssessmentDto> list = new ArrayList<>();
         try {
@@ -109,7 +109,7 @@ public class AssessmentDao extends Dao {
                     "ORDER BY sales DESC";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 AssessmentDto dto = new AssessmentDto();
                 dto.setCustno(rs.getInt("custno"));
                 dto.setCustname(rs.getString("custname"));
@@ -117,7 +117,7 @@ public class AssessmentDao extends Dao {
                 dto.setSales(rs.getInt("sales"));
                 list.add(dto);
             }
-        }catch (Exception e ){
+        } catch (Exception e) {
             System.out.println(e);
         }
         return list;

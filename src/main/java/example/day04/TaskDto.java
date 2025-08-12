@@ -5,7 +5,9 @@ public class TaskDto {
     private String name;
     private int age;
 
-    public TaskDto() {   }
+    public TaskDto() {
+    }
+
     public TaskDto(String name, int age) {
         this.name = name;
         this.age = age;

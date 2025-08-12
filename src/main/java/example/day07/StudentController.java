@@ -22,7 +22,7 @@ public class StudentController {
     @PostMapping("/save") // localhost:8080/student/save
     // @PostMapping : HTTP 요청 중에 method가 Post 인 요청 매핑
     // ("/URL") : HTTP 주소 만들기/정의
-    public boolean save(@RequestBody StudentDto studentDto){
+    public boolean save(@RequestBody StudentDto studentDto) {
         // body : { "sno" : "1", "sname" : "유재석" , "skor" : "100" , "smath" : "90" }
         System.out.println("StudentController.save");       // soutm
         System.out.println("studentDto = " + studentDto);
@@ -32,7 +32,7 @@ public class StudentController {
     // 2. 전체 조회
     @GetMapping("/find") // localhost:8080/student/find
     // @GetMapping : HTTP 요청 중에 method 가 Get 인 요청 매핑
-    public List<StudentDto> find(){
+    public List<StudentDto> find() {
         System.out.println("StudentController.find");
         return studentDao.find();
     }

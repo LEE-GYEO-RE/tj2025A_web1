@@ -9,10 +9,11 @@ import java.util.List;
 
 @Service
 public class WaitingService {
-    @Autowired private WaitingDao waitingDao;
+    @Autowired
+    private WaitingDao waitingDao;
 
     // 등록
-    public boolean waitingAdd(WaitingDto waitingDto){
+    public boolean waitingAdd(WaitingDto waitingDto) {
         System.out.println("WaitingService.waitingAdd");
         System.out.println("waitingDto = " + waitingDto);
         boolean result = waitingDao.waitingAdd(waitingDto);
@@ -20,14 +21,14 @@ public class WaitingService {
     } // func e
 
     // 전체 조회
-    public List<WaitingDto> waitingPrint(){
+    public List<WaitingDto> waitingPrint() {
         System.out.println("WaitingService.waitingPrint");
         List<WaitingDto> result = waitingDao.waitingPrint();
         return result;
     } // func e
 
     // 개별 조회
-    public WaitingDto waitingFind( int wno ){
+    public WaitingDto waitingFind(int wno) {
         System.out.println("WaitingService.waitingFind");
         System.out.println("wno = " + wno);
         WaitingDto result = waitingDao.waitingFind(wno);
@@ -35,7 +36,7 @@ public class WaitingService {
     } // func e
 
     // 개별 삭제
-    public boolean waitingDelete( int wno ){
+    public boolean waitingDelete(int wno) {
         System.out.println("WaitingService.waitingDelete");
         System.out.println("wno = " + wno);
         boolean result = waitingDao.waitingDelete(wno);
@@ -43,13 +44,12 @@ public class WaitingService {
     } // func e
 
     // 개별 수정
-    public boolean waitingUpdate(WaitingDto waitingDto){
+    public boolean waitingUpdate(WaitingDto waitingDto) {
         System.out.println("WaitingService.waitingUpdate");
         System.out.println("waitingDto = " + waitingDto);
         boolean result = waitingDao.waitingUpdate(waitingDto);
         return result;
     } // func e
-
 
 
 } // class e

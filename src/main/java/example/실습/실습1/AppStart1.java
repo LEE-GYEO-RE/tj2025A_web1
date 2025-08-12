@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AppStart1 {
     public static void main(String[] args) {
 
-        SpringApplication.run( AppStart1.class);
+        SpringApplication.run(AppStart1.class);
 
     } // main e
 } // class e

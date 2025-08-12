@@ -5,9 +5,9 @@ package example.day07;
 // 1) 인텔리제이 설치 (환경) 설정 플러그인에서 lombok 검색해서 설치
 
 // 2) 그레이들 설치   (프로젝트)
-    // https://start.spring.io/ 홈페이지에서 오른쪽 상단 add dependencies 에서 lombok 검색
-    // compileOnly 'org.projectlombok:lombok'  // lombok 설치
-    // annotationProcessor 'org.projectlombok:lombok'  // lombok 설치
+// https://start.spring.io/ 홈페이지에서 오른쪽 상단 add dependencies 에서 lombok 검색
+// compileOnly 'org.projectlombok:lombok'  // lombok 설치
+// annotationProcessor 'org.projectlombok:lombok'  // lombok 설치
 
 import lombok.*;
 

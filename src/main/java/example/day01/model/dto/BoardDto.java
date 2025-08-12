@@ -7,7 +7,8 @@ public class BoardDto {
     private String bwriter;
 
     // 기본 생성자
-    public BoardDto() { }
+    public BoardDto() {
+    }
 
     // 전체 생성자
     public BoardDto(int bno, String bcontent, String bwriter) {

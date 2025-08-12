@@ -13,7 +13,7 @@ public class WaitingController {
 
     // 대기 등록
     @PostMapping("/add")
-    public boolean addWaiting(@RequestBody WaitingDto waitingDto){
+    public boolean addWaiting(@RequestBody WaitingDto waitingDto) {
         System.out.println("WaitingController.addWaiting");
         System.out.println("waitingDto = " + waitingDto);
         return waitingDao.addWaiting(waitingDto);
@@ -21,7 +21,7 @@ public class WaitingController {
 
     // 대기 등록 현황 조회
     @GetMapping("/print")
-    public List<WaitingDto> waitingPrint(){
+    public List<WaitingDto> waitingPrint() {
         System.out.println("WaitingController.waitingPrint");
         return waitingDao.waitingPrint();
     } // func e

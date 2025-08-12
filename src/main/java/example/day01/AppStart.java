@@ -19,7 +19,7 @@ public class AppStart {
         // 저 코드가 알아서 라이브러리 추가 됨
 
         // view 없을 때 dao , controller 기능 확인 테스트
-        boolean result = BoardController.getInstance().boardWrite("테스트내용" , "ㅎㅇㅎㅇ");
+        boolean result = BoardController.getInstance().boardWrite("테스트내용", "ㅎㅇㅎㅇ");
         System.out.println(result);
 
         // 전체 조회 기능 테스트
@@ -28,7 +28,7 @@ public class AppStart {
 
         // * Spring 환경 실행
         // SpringApplication.run( 현재클래스명.class );
-        SpringApplication.run( AppStart.class );
+        SpringApplication.run(AppStart.class);
 
     } // main e
 } // class e

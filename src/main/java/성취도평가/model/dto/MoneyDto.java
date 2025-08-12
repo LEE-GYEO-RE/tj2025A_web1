@@ -4,7 +4,9 @@ import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter@Setter@ToString
+@Getter
+@Setter
+@ToString
 public class MoneyDto {
     private int custno;
     private int salenol;

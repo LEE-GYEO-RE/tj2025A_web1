@@ -12,15 +12,17 @@ public class Dao {
     public Connection conn;
 
     // db연동 생성자
-    public Dao(){connect();}
+    public Dao() {
+        connect();
+    }
 
     // db 연동 메소드
-    private void connect(){
+    private void connect() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(db_url , db_user , db_password);
+            conn = DriverManager.getConnection(db_url, db_user, db_password);
             System.out.println("(waiting)Dao.connect");
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }

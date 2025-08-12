@@ -22,7 +22,7 @@ public class MvcController {
 
     // [3] 기능 처리
     @GetMapping("/day08/mvc")
-    public void method(){
+    public void method() {
         System.out.println("MvcController.method");
         mvcService.method(); // 서비스의 메소드 호출
     }

@@ -1,8 +1,6 @@
 package 종합.예제11.model.dto;
 
 
-
-
 public class BoardDto {
     // 1. 멤버변수 : private 필수 로 하고 db테이블 속성과 일치화 *커스텀
     private int bno;
@@ -11,7 +9,8 @@ public class BoardDto {
 
     // * . 생성자 , 메소드 : 자동완성
     // 기본 빈 생성자 : @RequestXXX 가 사용함.
-    public BoardDto() { }
+    public BoardDto() {
+    }
 
     // 전체 생성자
     public BoardDto(int bno, String bcontent, String bwriter) {

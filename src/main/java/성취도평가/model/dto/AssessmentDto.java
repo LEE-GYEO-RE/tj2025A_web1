@@ -4,7 +4,9 @@ import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter@Setter@ToString
+@Getter
+@Setter
+@ToString
 public class AssessmentDto {
     private int custno;
     private String custname;

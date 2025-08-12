@@ -23,19 +23,22 @@ public class RestController1 {
     public void 등록하기() {
         System.out.println("RestController1.등록하기"); // soutm 자동완성
     } // m end
+
     // 2) 조회 : READ -> @GetMapping
     @GetMapping         // Talend API : [METHOD] GET , [Scheme] : http://localhost:8080
-    public void 조회하기(){
+    public void 조회하기() {
         System.out.println("RestController1.조회하기");
     } // m end
+
     // 3) 수정 : UPDATE -> @PutMapping
     @PutMapping         // Talend API : [METHOD] PUT , [Scheme] : http://localhost:8080
-    public void 수정하기(){
+    public void 수정하기() {
         System.out.println("RestController1.수정하기");
     }
+
     // 4) 삭제 : DELETE -> @DeleteMapping
     @DeleteMapping      // Talend API : [METHOD] DELETE , [Scheme] : http://localhost:8080
-    public void 삭제하기(){
+    public void 삭제하기() {
         System.out.println("RestController1.삭제하기");
     }
 } // CLASS END
