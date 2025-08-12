@@ -43,6 +43,7 @@ public class WaitingDao extends Dao {
                 waitingDto.setWno(rs.getInt("wno"));
                 waitingDto.setPhone(rs.getString("phone"));
                 waitingDto.setCount(rs.getInt("count"));
+                waitingDto.setW_date(rs.getString("w_date"));
                 list.add(waitingDto);
             }
         }catch (Exception e ){
@@ -65,6 +66,7 @@ public class WaitingDao extends Dao {
                 waitingDto.setWno(rs.getInt(1));
                 waitingDto.setPhone(rs.getString(2));
                 waitingDto.setCount(rs.getInt(3));
+                waitingDto.setW_date(rs.getString(4));
                 return waitingDto;
             }
         }catch (Exception e ){

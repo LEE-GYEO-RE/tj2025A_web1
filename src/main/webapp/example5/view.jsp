@@ -14,6 +14,7 @@
         <h3> 대기 현황 상세 페이지 </h3>
         핸드폰 번호 : <div class="phoneBox"></div>
         인원수 : <div class="countBox"></div>
+        등록 일시 : <div class="w_dateBox"></div>
         <button type="button" onclick="waitingDelete()"> 삭제 </button>
         <button type="button" onclick="waitingUpdateView()"> 수정 </button>
     </div>

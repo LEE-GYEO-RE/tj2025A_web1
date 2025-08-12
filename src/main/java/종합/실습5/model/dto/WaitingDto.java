@@ -9,4 +9,5 @@ public class WaitingDto {
     private int wno;
     private String phone;
     private int count;
+    private String w_date;
 }

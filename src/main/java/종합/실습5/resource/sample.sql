@@ -6,6 +6,7 @@ create table waiting(
 	wno int auto_increment,
     phone varchar(100) not null,
     count int not null,
+    w_date datetime default current_timestamp,
     constraint primary key (wno)
     );
     
@@ -29,11 +30,6 @@ INSERT INTO waiting (phone, count) VALUES ('010-7777-7777', 2);
 INSERT INTO waiting (phone, count) VALUES ('010-8888-8888', 3);
 INSERT INTO waiting (phone, count) VALUES ('010-9999-9999', 1);
 INSERT INTO waiting (phone, count) VALUES ('010-0000-0000', 4);
-
-
-
-
-
 
 
 select * from waiting;

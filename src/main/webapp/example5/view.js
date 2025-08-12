@@ -11,11 +11,14 @@ const waitingFind = async () => {
 
     const phoneBox = document.querySelector('.phoneBox');
     const countBox = document.querySelector('.countBox');
+    const w_dateBox = document.querySelector('.w_dateBox');
     const phone = data.phone;
     const count = data.count;
+    const w_date = data.w_date;
 
     phoneBox.innerHTML = phone;
     countBox.innerHTML = count;
+    w_dateBox.innerHTML = w_date;
 
 } // func e
 waitingFind();

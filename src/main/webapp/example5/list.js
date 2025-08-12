@@ -19,6 +19,7 @@ const waitingPrint = async () => {
                         </a>    
                     </td>
                     <td>${waiting.count}</td>
+                    <td>${waiting.w_date}</td>
                 </tr>`
     } // for e
 

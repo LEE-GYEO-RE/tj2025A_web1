@@ -20,6 +20,7 @@
                     <th> 번호 </th> 
                     <th> 핸드폰 번호 </th>
                     <th> 인원수 </th> 
+                    <th> 등록 일시</th>
                 </tr>
             </thead>
             <tbody id="waitingTbody">
