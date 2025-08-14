@@ -16,7 +16,7 @@
 
         <div id="header">
             <ul id="sub-menu">
-                <li> <a href="/index.jsp>"> <img src="/img/logo.jpg" /></a></li>
+                <li> <a href="/index.jsp"> <img src="/img/logo.jpg" /></a></li>
                 <li> <a href="#"> 메뉴1 </a></li>
                 <li> <a href="#"> 메뉴2 </a></li>
                 <li> <a href="#"> 메뉴3 </a></li>

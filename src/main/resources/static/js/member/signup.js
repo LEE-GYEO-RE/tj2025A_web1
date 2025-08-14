@@ -1,13 +1,18 @@
 console.log("signup.js test");
 
+// *** 유효성검사 체크리스트 ***
+// 두개(아이디 , 연락처) 설정해서 , 회원가입 부분에 둘 중 하나라도 false 나오면 회원가입 못하게 설정해놔야함.
+const signPass = [false , false]; // 초기값은 실패 , 0인덱스 : 아이디체크 , 1인덱스 : 연락처 체크
+
 // [1] 회원가입 처리
 
 const signup = async() =>{
 
     // 만약에 유효성 검사 체크리스트에 false가 존재하면 회원가입 진행 불가능.
-    if(signPass[0] == false ){
+    // JS배열 내 요소 찾을 때 함수 : 1. .indexOf() , 2. .includes()
+    if(signPass.includes(false) ){
         alert("올바른 정보를 입력 후 가능합니다.");
-        return;
+        return; // 리턴 : 함수 바로 종료 , 자바도 똑같음
     }
 
     // 1. 마크업의 DOM 객체 가져오기
@@ -46,9 +51,6 @@ const signup = async() =>{
 
 // <마크업> 이벤트 : onclick( 해당 마크업을 클릭했을 때 ) , onkeyup( 해당 마크업에 키를 땠을때 )
 
-// *** 유효성검사 체크리스트 ***
-const signPass = [false]; // 초기값은 실패 , 0인덱스 : 아이디체크 , 1인덱스 : 연락처 체크
-
 // [2] 아이디 중복검사 : 입력할때마다 발동
 const idCheck = async() =>{
 
@@ -75,10 +77,8 @@ const idCheck = async() =>{
             idCheck.innerHTML = "사용가능한 아이디 입니다."
             signPass[0] = true; // 유효성 검사 상태 변경
         }
-    }catch{
-
-    }
-} 
+    }catch{ }
+} // func e
 
 
 // [3] 연락처 중복검사 : 입력할때마다 발동
@@ -87,8 +87,12 @@ const phoneCheck = async() =>{
     const mphone = document.querySelector(".phoneInput").value;
     const phoneCheck = document.querySelector(".phoneCheck");
 
-    // 유효성 검사 체크리스트
-    const signPass = [false];
+    // 길이 유효성 검사
+    if(mphone.length != 13 ){
+        phoneCheck.innerHTML = `-(하이픈) 포함한 13글자 연락처 입력해주세요.`
+        signPass[1] = [false];
+        return;
+    }
 
     // 2. 유효성 검사 , 중복검사 , /member/check?type=검사할속성명&data=${검사할데이터}
     try{
@@ -96,13 +100,11 @@ const phoneCheck = async() =>{
         const response = await fetch( `/member/check?type=mphone&data=${mphone}` , option );
         const data = await response.json();
         if( data == true ){
-            phoneCheck.innerHTML = "사용중인 연락처가 있습니다.."
-            signPass[0] = false; // 유효성 검사 상태 변경
+            phoneCheck.innerHTML = "사용중인 연락처입니다."
+            signPass[1] = false; // 유효성 검사 상태 변경
         }else{
             phoneCheck.innerHTML = "등록된 연락처 없습니다."
-            signPass[0] = true; // 유효성 검사 상태 변경
+            signPass[1] = true; // 유효성 검사 상태 변경
         }
-    }catch{
-
-    }
-} 
+    }catch(error){ console.log(error) }
+} // func e
