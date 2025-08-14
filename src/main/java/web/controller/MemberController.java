@@ -25,8 +25,7 @@ public class MemberController {
 
     // [2] 로그인
     @PostMapping("/login")
-    public int login (@RequestBody MemberDto memberDto,
-                      HttpServletRequest request ){
+    public int login (@RequestBody MemberDto memberDto, HttpServletRequest request ){
         // 1. 세션 정보 가져오기
         HttpSession session = request.getSession();
         // 2. 로그인 성공한 회원번호 확인
@@ -105,6 +104,7 @@ public class MemberController {
         Object obj = session.getAttribute("loginMno");                                  // 3.
         int loginMno = (int)obj;
         boolean result = memberService.updatePassword( loginMno , map );                // 4.
+        session.removeAttribute(("loginMno"));
         return result;
     }
 
@@ -116,7 +116,9 @@ public class MemberController {
         // 2.
         int loginMno = (int)session.getAttribute("loginMno");
         // 3.
-        return memberService.delete( loginMno , oldpwd );
+        boolean result =  memberService.delete( loginMno , oldpwd );
+        if(result == true )session.removeAttribute(("loginMno"));
+        return result;
     }
 
 
