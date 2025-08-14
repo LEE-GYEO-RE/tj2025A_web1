@@ -3,7 +3,10 @@ package web.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import web.model.dao.MemberDao;
+import web.model.dto.FindMemberIdDto;
+import web.model.dto.FindMemberPwdDto;
 import web.model.dto.MemberDto;
+import java.security.SecureRandom;
 
 import java.util.Map;
 
@@ -52,5 +55,36 @@ public class MemberService {
     public boolean delete( int mno , String oldpwd ){
         boolean result = memberDao.delete( mno , oldpwd );
         return result;
+    }
+
+    // [9] 아이디찾기
+    public FindMemberIdDto findMid(String mname , String mphone){
+        FindMemberIdDto result = memberDao.findMid(mname ,mphone);
+        return result;
+    } // func e
+
+    // [10] 비밀번호 찾기
+    public FindMemberPwdDto findPwd(String mid , String mphone ){
+
+        // 임시 비밀번호 생성
+        String newPwd = generateNewPwd(6);
+
+        // db 업데이트
+        boolean success = memberDao.updatePassword()
+
+        // 응답
+    }
+
+    // 비밀번호 랜덤 난수 생성
+    private String generateNewPwd(int length) {
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        SecureRandom random = new SecureRandom();
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < length; i++) {
+            sb.append(chars.charAt(random.nextInt(chars.length())));
+        }
+
+        return sb.toString();
     }
 } // class end

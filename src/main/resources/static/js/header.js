@@ -18,7 +18,10 @@ const myinfo = async () =>{
     }catch{
         // 2. [비로그인중] 로그인 안했을 때 비정상 통신 fetch
         html += `<li> <a href="/member/login.jsp"> 로그인 </a></li>
-                <li> <a href="/member/signup.jsp"> 회원가입 </a></li>`
+                <li> <a href="/member/signup.jsp"> 회원가입 </a></li>
+                <li> <a href="/member/findId.jsp"> 아이디찾기 </a></li>
+                <li> <a href="/member/findPwd.jsp"> 비밀번호찾기 </a></li>
+                `
     }
 
     logMenu.innerHTML = html; // 출력

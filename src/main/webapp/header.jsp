@@ -25,6 +25,8 @@
                 <!-- 로그인 안했을 때 구역 -->
                 <li> <a href="/member/login.jsp"> 로그인 </a></li>
                 <li> <a href="/member/signup.jsp"> 회원가입 </a></li>
+                <li> <a href="/member/findId.jsp"> 아이디찾기 </a></li>
+                <li> <a href="/member/findPwd.jsp"> 비밀번호찾기 </a></li>
                 <!-- 로그인 했을때 구역 -->
                 <li> <span> OOO님 100 POINT </span></li>
                 <li><a href="/member/info.jsp"> 내정보 </a></li>

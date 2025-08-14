@@ -4,6 +4,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import web.model.dto.FindIdRequestDto;
+import web.model.dto.FindMemberIdDto;
 import web.model.dto.MemberDto;
 import web.service.MemberService;
 
@@ -121,6 +123,19 @@ public class MemberController {
         return result;
     }
 
+    @PostMapping("/find")
+    public FindMemberIdDto findMid(@RequestBody FindIdRequestDto requestDto) {
+        String mname = requestDto.getMname();
+        String mphone = requestDto.getMphone();
+
+        FindMemberIdDto result = memberService.findMid(mname, mphone);
+
+        if (result == null) {
+            return new FindMemberIdDto(null);  // 아이디 못 찾은 경우
+        }
+
+        return result;
+    }
 
 
 

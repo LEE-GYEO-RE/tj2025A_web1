@@ -1,12 +1,14 @@
 package web.model.dao;
 
 import org.springframework.stereotype.Repository;
+import web.model.dto.FindMemberIdDto;
 import web.model.dto.MemberDto;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Map;
+import java.util.Objects;
 
 @Repository // 스프링 컨테이너에 빈 등록
 public class MemberDao extends Dao { // JDBC 연동 상속받기
@@ -123,5 +125,41 @@ public class MemberDao extends Dao { // JDBC 연동 상속받기
         } catch (Exception e) { System.out.println(e); }
         return false;
     }
+
+    // [9] 아이디 찾기
+    public FindMemberIdDto findMid(String mname , String mphone ){
+        try {
+            String sql = "select mid from member where mname = ? and mphone = ? ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1,mname);
+            ps.setString(2,mphone);
+            try(ResultSet rs = ps.executeQuery()) {
+                if(rs.next()){
+                    return new FindMemberIdDto(rs.getString("mid"));
+                }
+            }catch (Exception e ){
+                System.out.println("아이디 찾지 못함");
+            }
+        }catch (Exception e ){
+            System.out.println("오류 발생");
+        }
+        return null;
+    }
+
+    // [10] 비밀번호 찾기
+    public boolean findPwd(Map<String , Object> paramMap){
+        String sql = "update member set mpwd = ? where mid = ? amd mphone = ?";
+        try(PreparedStatement ps =conn.prepareStatement(sql)){
+            ps.setString(1,(String) paramMap.get("mpwd"));
+            ps.setString(2,(String) paramMap.get("mid"));
+            ps.setString(3,(String) paramMap.get("mphone"));
+            int count = ps.executeUpdate();
+            return count == 1;
+        }catch (Exception e ){
+            System.out.println(e);
+        }
+        return false;
+    } // func e
+
 
 } // class end
