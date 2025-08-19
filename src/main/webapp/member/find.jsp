@@ -24,7 +24,7 @@
         <div id="containerPwd">
         <h3> 비밀번호 찾기 페이지 </h3>
         <div> 아이디 : <input class="mid"/> </div>
-        <div> 연락처 : <input class="mphone"/> </div>
+        <div> 연락처 : <input class="phone"/> </div>
         <button type="button" onclick="findPwd()"> 비밀번호 찾기 </button>
 
     </div>

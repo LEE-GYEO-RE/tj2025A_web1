@@ -66,16 +66,18 @@ public class MemberService {
 
     // [10] 비밀번호 찾기
     public FindRequestPwdDto findPwd( String mid , String mphone ){
-        if(memberDao.findMember(mid , mphone )){
-            String newpwd = generateNewPwd(6);
-            boolean updatePwd = memberDao.findPwd(mid , newpwd);
-            if(updatePwd){
-                FindRequestPwdDto dto = new FindRequestPwdDto();
-                dto.setNewpwd(newpwd);
-                return dto;
-            }
-        }
-        return null;
+        boolean result = memberDao.findMember(mid , mphone);
+
+        if(!result) return null;
+        String newpwd = generateNewPwd(6);
+
+        boolean updatePwd = memberDao.findPwd(mid , newpwd);
+        if(!updatePwd) return null;
+
+        FindRequestPwdDto dto = new FindRequestPwdDto();
+        dto.setNewpwd(newpwd);
+        return dto;
+
     } // func e
 
     // 비밀번호 랜덤 난수 생성

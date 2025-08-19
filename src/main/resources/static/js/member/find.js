@@ -33,7 +33,7 @@ console.log("findPwd.js test");
 const findPwd = async() =>{
 
     const mid = document.querySelector(".mid").value;
-    const mphone = document.querySelector(".mphone").value;
+    const mphone = document.querySelector(".phone").value;
 
     const obj = { mid , mphone }
 

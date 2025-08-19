@@ -156,10 +156,14 @@ public class MemberDao extends Dao { // JDBC 연동 상속받기
             ps.setString(1, mid);
             ps.setString(2, mphone);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()) return true;
+            System.out.println("findMember 실행 : mid = " + mid + ", mphone = " + mphone);
+            if(rs.next()) {
+                System.out.println("회원존재");
+                return true;}
         }catch (Exception e ){
             System.out.println(e);
         }
+        System.out.println("회원없음");
         return false;
     } // func e
 
