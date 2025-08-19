@@ -2,8 +2,11 @@ package web.model.dao;
 
 import org.springframework.stereotype.Repository;
 import web.model.dto.FindMemberIdDto;
+import web.model.dto.FindMemberPwdDto;
+import web.model.dto.FindRequestPwdDto;
 import web.model.dto.MemberDto;
 
+import javax.xml.transform.Result;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -145,21 +148,34 @@ public class MemberDao extends Dao { // JDBC 연동 상속받기
         }
         return null;
     }
-
-    // [10] 비밀번호 찾기
-    public boolean findPwd(Map<String , Object> paramMap){
-        String sql = "update member set mpwd = ? where mid = ? amd mphone = ?";
-        try(PreparedStatement ps =conn.prepareStatement(sql)){
-            ps.setString(1,(String) paramMap.get("mpwd"));
-            ps.setString(2,(String) paramMap.get("mid"));
-            ps.setString(3,(String) paramMap.get("mphone"));
-            int count = ps.executeUpdate();
-            return count == 1;
+    // [10-1] 비밀번호 찾기 (회원 확인 )
+    public boolean findMember(String mid , String mphone ){
+        try {
+            String sql = "select * from member where mid = ? and mphone = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, mid);
+            ps.setString(2, mphone);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) return true;
         }catch (Exception e ){
             System.out.println(e);
         }
         return false;
     } // func e
 
+    // [10-2] 비밀번호 찾기 (난수 생성 된거 새로 업데이트)
+    public boolean findPwd( String mid , String newpwd ){
+        try {
+            String sql = "update member set mpwd = ? where mid = ? ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, newpwd);
+            ps.setString(2, mid);
+            int count = ps.executeUpdate();
+            if(count == 1 )return true;
+        }catch (Exception e ){
+            System.out.println(e);
+        }
+        return false;
+    } // func e
 
 } // class end

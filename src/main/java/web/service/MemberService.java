@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import web.model.dao.MemberDao;
 import web.model.dto.FindMemberIdDto;
 import web.model.dto.FindMemberPwdDto;
+import web.model.dto.FindRequestPwdDto;
 import web.model.dto.MemberDto;
 import java.security.SecureRandom;
 
@@ -64,14 +65,18 @@ public class MemberService {
     } // func e
 
     // [10] 비밀번호 찾기
-
-
-        // 임시 비밀번호 생성
-
-
-        // db 업데이트
-
-        // 응답
+    public FindRequestPwdDto findPwd( String mid , String mphone ){
+        if(memberDao.findMember(mid , mphone )){
+            String newpwd = generateNewPwd(6);
+            boolean updatePwd = memberDao.findPwd(mid , newpwd);
+            if(updatePwd){
+                FindRequestPwdDto dto = new FindRequestPwdDto();
+                dto.setNewpwd(newpwd);
+                return dto;
+            }
+        }
+        return null;
+    } // func e
 
     // 비밀번호 랜덤 난수 생성
     private String generateNewPwd(int length) {

@@ -4,9 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import web.model.dto.FindIdRequestDto;
-import web.model.dto.FindMemberIdDto;
-import web.model.dto.MemberDto;
+import web.model.dto.*;
 import web.service.MemberService;
 
 import java.util.Map;
@@ -123,6 +121,7 @@ public class MemberController {
         return result;
     }
 
+    // [9] 아이디 찾기
     @PostMapping("/find")
     public FindMemberIdDto findMid(@RequestBody FindIdRequestDto requestDto) {
         String mname = requestDto.getMname();
@@ -137,7 +136,18 @@ public class MemberController {
         return result;
     }
 
+    // [10] 비밀번호 찾기
+    @PostMapping("/find/pwd")
+    public FindRequestPwdDto findPwd(@RequestBody FindMemberPwdDto memberPwdDto){
+        String mid = memberPwdDto.getMid();
+        String mphone = memberPwdDto.getMphone();
 
+        FindRequestPwdDto result = memberService.findPwd(mid , mphone);
 
+        if( result == null ){
+            return new FindRequestPwdDto(null);
+        }
+        return result;
+    }
 
 } // class end

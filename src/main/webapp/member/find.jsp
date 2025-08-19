@@ -7,20 +7,28 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' href='/css/member/findId.css'>
+    <link rel='stylesheet' href='/css/member/find.css'>
 
 </head>
 <body>
     <jsp:include page="/header.jsp"></jsp:include>
 
-    <div id="container">
-        <h3> 아이디찾기 수정 페이지 </h3>
+    <div id="containerID">
+        <h3> 아이디찾기 페이지 </h3>
         <div> 이름 : <input class="mname"/> </div>
         <div> 연락처 : <input class="mphone"/> </div>
         <button type="button" onclick="findMid()"> 아이디 찾기 </button>
 
     </div>
+
+        <div id="containerPwd">
+        <h3> 비밀번호 찾기 페이지 </h3>
+        <div> 아이디 : <input class="mid"/> </div>
+        <div> 연락처 : <input class="mphone"/> </div>
+        <button type="button" onclick="findPwd()"> 비밀번호 찾기 </button>
+
+    </div>
     
-    <script src="/js/member/findId.js"></script>
+    <script src="/js/member/find.js"></script>
 </body>
 </html>
