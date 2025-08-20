@@ -3,12 +3,13 @@ package web.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import web.model.dao.MemberDao;
-import web.model.dto.FindMemberIdDto;
-import web.model.dto.FindMemberPwdDto;
-import web.model.dto.FindRequestPwdDto;
-import web.model.dto.MemberDto;
+import web.model.dao.PointDao;
+import web.model.dto.*;
+
 import java.security.SecureRandom;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 
 @Service // 스프링 컨테이너(메모리) 빈(객체) 등록
@@ -16,16 +17,38 @@ public class MemberService {
 
     @Autowired // 스프링 컨테이너(메모리)에 등록된 빈 주입(꺼내) 받기
     private MemberDao memberDao;
+    @Autowired
+    private PointDao pointDao;
 
     // [1] 회원가입
     public int signUp(MemberDto memberDto ){
         int result = memberDao.signUp( memberDto );
+        if(result != 0){
+            PointLogDto pointLogDto = new PointLogDto();
+            pointLogDto.setMno(result);
+            pointLogDto.setPlpoint(1000);
+            pointLogDto.setPlcomment("회원가입");
+            pointDao.signPoint(pointLogDto);
+        }
         return result;
     } // func end
 
     // [2] 로그인
     public int login ( MemberDto memberDto ){
         int result = memberDao.login( memberDto );
+        if(result != 0 ){
+            PointLogDto pointLogDto = new PointLogDto();
+            pointLogDto.setMno(result);
+            pointLogDto.setPlpoint(10);
+            pointLogDto.setPlcomment("로그인");
+            pointDao.loginPoint(pointLogDto);
+        }
+        return result;
+    } // func e
+
+    // [3] 포인트 지급 내역 전체 조회
+    public List<PointLogDto> myPointLog(int mno){
+        List<PointLogDto> result = pointDao.myPointLog(mno);
         return result;
     }
 
@@ -91,5 +114,8 @@ public class MemberService {
         }
 
         return sb.toString();
-    }
+    } // func e
+
+    // 회원가입 시 포인트 적립
+
 } // class end

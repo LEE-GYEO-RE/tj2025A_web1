@@ -1,10 +1,7 @@
 package web.model.dao;
 
 import org.springframework.stereotype.Repository;
-import web.model.dto.FindMemberIdDto;
-import web.model.dto.FindMemberPwdDto;
-import web.model.dto.FindRequestPwdDto;
-import web.model.dto.MemberDto;
+import web.model.dto.*;
 
 import javax.xml.transform.Result;
 import java.sql.PreparedStatement;
@@ -35,7 +32,7 @@ public class MemberDao extends Dao { // JDBC 연동 상속받기
                     return mno; // 회원가입 성공한 회원의 번호를 반환한다.
                 }
             }
-        } catch (Exception e) {       System.out.println(e);  }
+        } catch (Exception e) { System.out.println(e);  }
         return 0; // 회원가입 실패시 0 반환한다.
     } // func end
 

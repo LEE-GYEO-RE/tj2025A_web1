@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import web.model.dto.*;
 import web.service.MemberService;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -58,7 +59,7 @@ public class MemberController {
         // 1. HttpServletRequest(요청정보)객체 에서 세션 객체 꺼내기
         HttpSession session = request.getSession();
         // 2. 만약에 비어있으면 비로그인상태
-        if( session == null || session.getAttribute("loginMno") == null ){   return null;   }
+        if( session == null || session.getAttribute("loginMno") == null ){ return null; }
         // 3. 로그인상태이면 세션 정보내 로그인상태 속성값 호출
         Object obj = session.getAttribute("loginMno"); // 로그인시 정의 속성명과 동일하게 작성
         // Object타입은 자바의 최상위 클래스로써 모든 자료를 저장한다. 세션은 Object 타입으로 저장한다.
