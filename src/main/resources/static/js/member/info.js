@@ -14,6 +14,21 @@ const onInfo = async() =>{
         document.querySelector(".mname").innerHTML = data.mname;
         document.querySelector(".mphone").innerHTML = data.mphone;
         document.querySelector(".mdate").innerHTML = data.mdate;
+
+        const pointTbody = document.querySelector("#pointTbody");
+        pointTbody.innerHTML = '';
+
+        for(let i = 0; i < data.length ; i++){
+            const pointList = data[i];
+            html += `<tr>
+                        <td>${pointList.mname}</td>
+                        <td>${pointList.plcomment}</td>
+                        <td>${pointList.plpoint}</td>
+                        <td>${pointList.pldate}</td>
+                    </tr>`
+        }
+        pointTbody.innerHTML = html;
+
     }catch(error){
         console.log(error);
         location.href = "/member/login.jsp";

@@ -23,6 +23,17 @@
         <a href="/member/pwdupdate.jsp"> 비밀번호 수정 </a>
         <a href="#" onclick="onDelete()"> 회원 탈퇴 </a>
     </div>
+    <table id="pointBox">
+        <thead>
+            <th> 회원이름 </th>
+            <th> 사유 </th>
+            <th> 포인트 </th>
+            <th> 지급일시 </th>
+        </thead>
+        <tbody id="pointTbody">
+
+        </tbody>
+    </table>
     <script src="/js/member/info.js"></script>
 </body>
 </html>

@@ -55,7 +55,7 @@ public class MemberController {
 
     // [4] 회원정보 조회
     @GetMapping("/info")
-    public MemberDto info( HttpServletRequest request ){
+    public MemberInfoDto info( HttpServletRequest request ){
         // 1. HttpServletRequest(요청정보)객체 에서 세션 객체 꺼내기
         HttpSession session = request.getSession();
         // 2. 만약에 비어있으면 비로그인상태
@@ -67,7 +67,7 @@ public class MemberController {
         // 4. 타입변환 , 강제타입변환이란?  (변환할타입명)변수명; , **태생!!** : Object 가 되기전에 타입 확인? int
         int loginMno = (int)obj;
         // 5. 서비스에게 전달하고 응답받기
-        MemberDto result  = memberService.info( loginMno );
+        MemberInfoDto result  = memberService.info( loginMno );
         return result;
     }
 

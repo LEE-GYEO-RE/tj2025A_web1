@@ -9,6 +9,7 @@ import web.model.dto.*;
 import java.security.SecureRandom;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -46,16 +47,13 @@ public class MemberService {
         return result;
     } // func e
 
-    // [3] 포인트 지급 내역 전체 조회
-    public List<PointLogDto> myPointLog(int mno){
-        List<PointLogDto> result = pointDao.myPointLog(mno);
-        return result;
-    }
-
     // [4] 회원정보조회
-    public MemberDto info( int mno ){
-        MemberDto result = memberDao.info( mno );
-        return result;
+    public MemberInfoDto info( int mno ){
+        // 회원 dao에서 정보 전달받기
+        MemberDto memberInfo = memberDao.info( mno );
+        // 포인트 dao에서 정보 전달받기
+        List<PointLogDto> list = pointDao.myPointLog(mno);
+        return new MemberInfoDto(memberInfo , list);
     }
 
     // [5] 특정한 필드/열/컬럼 의 값 중복/존재 확인
