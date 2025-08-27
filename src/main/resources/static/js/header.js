@@ -12,7 +12,7 @@ const myinfo = async () =>{
         const data = await response.json(); console.log(data);
         // ** 비로그인시 응답자료가 null 이라서 .json() 타입변환 못하고 함수에서 오류 발생. -> catch로 이동 **
         // 2. [로그인중] 로그인 했을 때 정상 통신 fetch
-        html +=`<li> <span>${data.mid}님 </span></li>
+        html +=`<li> <span>${data.memberDto.mid}님 </span></li>
                 <li><a href="/member/info.jsp"> 내정보 </a></li>
                 <li><a href="#" onclick="logout()"> 로그아웃 </a></li>`
     }catch{

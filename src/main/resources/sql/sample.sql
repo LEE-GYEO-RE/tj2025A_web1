@@ -104,6 +104,38 @@ create table reply(
 );
 
 
+CREATE TABLE pointlog (
+    plno      INT AUTO_INCREMENT,
+    mno       INT NOT NULL,
+    plpoint   INT NOT NULL,
+    plcomment VARCHAR(100) NOT NULL,
+    pldate    DATETIME DEFAULT NOW(),
+    CONSTRAINT PRIMARY KEY (plno),
+    CONSTRAINT FOREIGN KEY (mno) REFERENCES member(mno) ON DELETE CASCADE
+);
+
+select * from member;
+-- ---------------------- 포인트 적립 샘플 ---------------------- --
+-- 회원 1이 회원가입 포인트 지급 (+1000)
+INSERT INTO pointlog (mno, plpoint, plcomment) VALUES (1, 1000, '회원가입');
+-- 회원 1이 로그인 포인트 지급 (+100) 3회
+INSERT INTO pointlog (mno, plpoint, plcomment) VALUES (1, 100, '로그인');
+INSERT INTO pointlog (mno, plpoint, plcomment) VALUES (1, 100, '로그인');
+INSERT INTO pointlog (mno, plpoint, plcomment) VALUES (1, 100, '로그인');
+-- ---------------------- 포인트 충전/차감 샘플 ---------------------- --
+-- 회원 1이 포인트 충전 (+5000)
+INSERT INTO pointlog (mno, plpoint, plcomment) VALUES (1, 5000, '포인트충전');
+-- 회원 1이 제품 구매로 포인트 차감 (-6000)
+INSERT INTO pointlog (mno, plpoint, plcomment) VALUES (1, -6000, '상품구매');
+-- 회원 1이 이벤트 참여로 포인트 적립 (+500)
+INSERT INTO pointlog (mno, plpoint, plcomment) VALUES (1, 500, '이벤트적립');
+
+
+
+select * from member;
+select * from pointlog;
+
+
 insert into post (ptitle, pcontent, mno, cno) values
 ('2025년 여름 시즌 인기 상품 발표', '2025년 여름 시즌에 가장 인기 있는 상품들이 발표되었습니다. 새로운 아이템들을 만나보세요.', 1, 1),
 ('새로운 할인 행사 시작!', '이번 주말부터 시작되는 할인 행사에서 다양한 제품을 할인된 가격으로 구매할 수 있습니다.', 2, 1),

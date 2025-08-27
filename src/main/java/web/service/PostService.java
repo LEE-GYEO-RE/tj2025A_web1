@@ -65,5 +65,27 @@ public class PostService {
         pageDto.setEndBtn(endBtn); // 끝 페이징 버튼번호
         pageDto.setData(postList); // 페이징한 게시물 리스트
         return pageDto; // 반환
-    }
-}
+    } // func e
+
+
+    // [3] 개별 조회
+    public PostDto getPost(int pno){
+        return postDao.getPost(pno);
+    } // func e
+
+    // [3-1] 게시물 조회수 1증가 / 개별조회에 합쳐도 됨
+    public void incrementView(int pno){
+        postDao.incrementView(pno);
+    } // func e
+
+    // [4] 게시물 삭제
+    public boolean deletePost( int pno ){
+        return postDao.deletePost(pno);
+    } // func e
+
+    // [5] 게시물 수정
+    public int updatePost( PostDto postDto ){
+        return postDao.updatePost(postDto);
+    } // func e
+
+} // class e

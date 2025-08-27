@@ -9,17 +9,17 @@ const onInfo = async() =>{
         const data = await response.json();
 
         // fetch 결과 : 로그인 상태
-        document.querySelector(".mno").innerHTML = data.mno;
-        document.querySelector(".mid").innerHTML = data.mid;
-        document.querySelector(".mname").innerHTML = data.mname;
-        document.querySelector(".mphone").innerHTML = data.mphone;
-        document.querySelector(".mdate").innerHTML = data.mdate;
+        document.querySelector(".mno").innerHTML = data.memberDto.mno;
+        document.querySelector(".mid").innerHTML = data.memberDto.mid;
+        document.querySelector(".mname").innerHTML = data.memberDto.mname;
+        document.querySelector(".mphone").innerHTML = data.memberDto.mphone;
+        document.querySelector(".mdate").innerHTML = data.memberDto.mdate;
 
         const pointTbody = document.querySelector("#pointTbody");
         pointTbody.innerHTML = '';
 
-        for(let i = 0; i < data.length ; i++){
-            const pointList = data[i];
+        for(let i = 0; i < data.pointLogDtos ; i++){
+            const pointList = data.pointLogDtos[i];
             html += `<tr>
                         <td>${pointList.mname}</td>
                         <td>${pointList.plcomment}</td>
@@ -31,7 +31,7 @@ const onInfo = async() =>{
 
     }catch(error){
         console.log(error);
-        location.href = "/member/login.jsp";
+        // location.href = "/member/login.jsp";
     }
 } 
 onInfo();
