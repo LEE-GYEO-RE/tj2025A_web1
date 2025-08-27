@@ -7,7 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class PostDao extends Dao {
@@ -184,6 +186,47 @@ public class PostDao extends Dao {
         return 0;
     }
 
+    // [6] 댓글 등록
+    public int writeReply(Map<String , String > map){
+        try {
+            String sql = "INSERT INTO reply (rcontent , mno , pno) VALUES ( ? , ? , ?) ";
+            PreparedStatement ps = conn.prepareStatement(sql , Statement.RETURN_GENERATED_KEYS); // pk값 반환 설정
+            ps.setString(1, map.get("rcontent"));
+            ps.setString(2, map.get("mno"));
+            ps.setString(3, map.get("pno"));
+            int count = ps.executeUpdate();
+            if( count == 1 ){
+                ResultSet rs = ps.getGeneratedKeys(); // insert 성공시 자동생성된 pk값들 반환
+                if(rs.next()) return rs.getInt(1); // pk값(댓글번호) 1개 반환
+            }
+        }catch (Exception e ){
+            System.out.println(e);
+        }
+        return 0;
+    } // func e
+
+    // [7] 댓글 전체 조회
+    public List<Map<String , String >> findAllReply(int pno){
+        List<Map<String , String >> list = new ArrayList<>();
+        try {
+            String sql = "select r.rno , r.rcontent , r.rdate , m.mid from reply r join member m on r.mno = m.mno " +
+                    "where pno = ? order by r.rdate asc";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, pno);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                Map<String , String> map = new HashMap<>();
+                map.put("rno" , String.valueOf(rs.getInt("rno")));
+                map.put("rcontent" , rs.getString("rcontent"));
+                map.put("rdate" , rs.getString("rdate"));
+                map.put("mid" , rs.getString("mid"));
+                list.add(map);
+            }
+        }catch (Exception e ){
+            System.out.println(e);
+        }
+        return list;
+    } // func e
 
 
 } // class end
