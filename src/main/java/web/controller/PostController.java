@@ -95,7 +95,6 @@ public class PostController {
         if( session == null || session.getAttribute("loginMno") == null ) return false;
         int loginMno = (int)session.getAttribute("loginMno");
         boolean result = postService.deletePost(pno);
-        if(result == true ) session.removeAttribute(("loginMno"));
         return result;
     } // func e
 
@@ -114,10 +113,10 @@ public class PostController {
         return postService.writeReply(map);
     } // func e
 
-    // [7]
+    // [7] 댓글 전체 조회
     @GetMapping("/reply")
-    public List<Map<String , String >> findAllReply(int pno){
+    public List<Map<String , String >> findAllReply(@RequestParam int pno){
         return postService.findAllReply(pno);
-    }
+    } // func e
 
 } // class end

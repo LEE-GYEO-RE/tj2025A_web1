@@ -7,8 +7,8 @@ const onInfo = async () =>{
         const option = { method : "GET"}
         const response = await fetch( "/member/info" , option );
         const data = await response.json();
-        document.querySelector(".mno").innerHTML = data.mno;
-        document.querySelector(".mid").innerHTML = data.mid;
+        document.querySelector(".mno").innerHTML = data.memberDto.mno;
+        document.querySelector(".mid").innerHTML = data.memberDto.mid;
 
     }catch(error){ console.log(error); }
 }

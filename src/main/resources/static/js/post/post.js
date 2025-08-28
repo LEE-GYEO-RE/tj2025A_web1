@@ -28,7 +28,7 @@ const findAll = async () => {   console.log("findAll test");
                 // post <---> postDto{}
                 html += `<tr>
                             <td> ${post.pno} </td>
-                            <td> ${post.ptitle} </td>
+                            <td> <a href="detail.jsp?pno=${post.pno}"> ${post.ptitle} </a> </td>
                             <td> ${post.mid} </td>
                             <td> ${post.pdate} </td>
                             <td> ${post.pview} </td>

@@ -12,18 +12,32 @@
     <jsp:include page="/header.jsp"></jsp:include>
 
     <div class="container">
-        <div class="ptitle">
-            제목
+        <div>
+            <div> 작성자 : <span class="mid"></span>  <div> 
+            <div> 
+                조회수 : <span class="pview"></span>
+                작성일 : <span class="pdate"></span>
+            </div>
+            <div class="ptitle">
+            
+            </div>
+            <div class="pcontent">
+                
+            </div>
         </div>
-        <div class="pcontent">
-            내용
+        <div class="etcBox">
+            <!-- 내가 쓴글이면 수정 / 삭제 버튼이 들어가는 곳 -->
         </div>
-        <div class="pdate">
-            날짜
-        </div>
-        <div class="pview">
-            조회수
-        </div>
+    </div>
+
+    <!-- 댓글 등록 구역-->
+    <div class="replyPost">
+        <textarea class="rcontent"></textarea>
+        <button onclick="writeReply()"> 댓글등록 </button>
+    </div>
+
+    <!-- 댓글 조회 구역-->
+    <div class="replyList">
 
     </div>
 
