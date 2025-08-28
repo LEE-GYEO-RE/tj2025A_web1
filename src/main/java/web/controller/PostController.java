@@ -95,6 +95,7 @@ public class PostController {
         if( session == null || session.getAttribute("loginMno") == null ) return false;
         int loginMno = (int)session.getAttribute("loginMno");
         boolean result = postService.deletePost(pno);
+        if(result == true ) session.removeAttribute(("loginMno"));
         return result;
     } // func e
 
@@ -102,21 +103,6 @@ public class PostController {
     @PutMapping("")
     public int updatePost(@RequestBody PostDto postDto ){
         return postService.updatePost(postDto);
-    } // func e
-
-    // [6] 댓글 등록
-    @PostMapping("/reply")
-    public int writeReply(@RequestBody Map<String , String > map , HttpSession session ){
-        if( session.getAttribute("loginMno") == null ) return 0; // 비로그인이면 실패
-        int loginMno = (int)session.getAttribute("loginMno"); // 로그인중이면 세션에서 회원번호 조회
-        map.put("mno" , String.valueOf(loginMno)); // Map이니깐 넣을때 타입변환 다시 해서 해야함
-        return postService.writeReply(map);
-    } // func e
-
-    // [7]
-    @GetMapping("/reply")
-    public List<Map<String , String >> findAllReply(int pno){
-        return postService.findAllReply(pno);
     }
 
 } // class end
